@@ -63,3 +63,31 @@ new syncit.App({
 Open app.html and embed.html in browsers and play. If you get issue with CORS, please use [Node serve](https://www.npmjs.com/package/serve) 
 or [python simple http server](https://www.hackerearth.com/practice/notes/simple-http-server-in-python/) to serve public directory as a "localhost" website.
 
+
+To embed code to any random test website. Please serve `public` as a website (Accessable via http, for example i used serve at port 3001) and add 
+following code into test website.
+
+```html
+<link rel="stylesheet" href="http://localhost:3001/bundle.css" />
+<script src="https://cdn.jsdelivr.net/npm/@syncit/transporter@0.3.2/dist/index.js"></script>
+<script src="http://localhost:3001/bundle.js"></script>
+<script>
+new syncit.Embed({
+target: document.body,
+props: {
+  createTransporter({ role, uid }) {
+    return new syncitTransporter.WebSocketTransporter({
+      role,
+      uid,
+      url: 'ws://localhost:8011/ws/any_client_id'
+    });
+  },
+},
+});
+</script>
+```
+
+
+
+
+
