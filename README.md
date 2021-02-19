@@ -46,7 +46,7 @@ Edit the embed.html and update to the new transporter
 
 ```js
 
-new syncit.App({
+new syncit.Embed({
         target: document.body,
         props: {
           createTransporter({ role, uid }) {
